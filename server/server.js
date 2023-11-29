@@ -14,7 +14,12 @@ async function main() {
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:false}));
-
+const cors = require("cors");
+const corsOptions ={
+  origin: "*",
+  credentials: true,
+}
+app.use(cors(corsOptions))
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -24,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', router)
 
 app.get("/api", (req, res) => {
-    res.json({"users": ["userOne", "userTwo", "userThree"]})
+    res.json({"users": ["userOne", "userTwo", "userThree", "userFour"]})
 })
 
 
@@ -37,7 +42,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 app.listen(5000, () => console.log('Server is Listening on Port 5000'))
