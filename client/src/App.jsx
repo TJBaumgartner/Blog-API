@@ -4,6 +4,7 @@ import {Route, Routes } from 'react-router-dom';
 import Index from './components/Index'
 import Blog from './components/Blog'
 import ErrorPage from './components/ErrorPage'
+import CreatePost from './components/CreatePost'
 
 function App() {
 
@@ -28,17 +29,12 @@ function App() {
 
   return(
     <div>
-      {(typeof backendData.users === 'undefined') ? (
-        <p>Loading</p>
-      ) : (
-        backendData.users.map((user, i) => (
-          <p key={i}>{user}</p>
-        ))
-      )}
-      <button onClick={handleGet}>Click me for index</button>
       <Routes>
         <Route path="/*" element={<Index/>}/>
-        <Route path="/blog" element={<Blog/>}/>
+        <Route path="/posts" element={<Blog 
+        blogPosts={backendData}
+        />}/>
+        <Route path="/posts/create" element={<CreatePost/>}/>
         {/* <Route path="/shop/:name/:item" element={<PurchaseItem/>}/> */}
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
