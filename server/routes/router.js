@@ -26,6 +26,8 @@ router.get("/posts/:id/delete", posts.post_delete_get);
 router.post("/posts/:id/delete", posts.post_delete_post);
 
 router.post("/user/create", user.sign_up_post)
+
+router.post("/login", user.login)
 // router.get("/posts/:id/update", posts.post_update_get);
 // router.post("/posts/:id/update", posts.post_update_post);
 
