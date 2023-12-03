@@ -9,7 +9,10 @@ const Navbar = () => {
                 Home
             </Link>
             <Link to="/posts/create">
-                CreatePost
+                Create Post
+            </Link>
+            <Link to="/user/create">
+                Create User
             </Link>
         </div>
   );

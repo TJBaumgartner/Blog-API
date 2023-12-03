@@ -5,6 +5,7 @@ import Index from './components/Index'
 import Blog from './components/Blog'
 import ErrorPage from './components/ErrorPage'
 import CreatePost from './components/CreatePost'
+import Signup from './components/SignUp'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/posts" element={<Blog 
         blogPosts={backendData}
         />}/>
+        <Route path="/user/create" element={<Signup/>}/>
         <Route path="/posts/create" element={<CreatePost/>}/>
         {/* <Route path="/shop/:name/:item" element={<PurchaseItem/>}/> */}
         <Route path="*" element={<ErrorPage/>}/>
