@@ -1,7 +1,7 @@
 const Post = require('../models/posts')
-
 // const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
+
 
 
 exports.post_create_get = asyncHandler(async (req, res, next) => {
@@ -19,7 +19,7 @@ exports.post_create_post = [
     })
 ];
 exports.post_list = asyncHandler(async (req, res, next) => {
-    res.send('Posts List')
+    res.send(req.user)
 
 });
 
