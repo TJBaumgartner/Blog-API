@@ -38,8 +38,6 @@ exports.login = asyncHandler(async (req, res, next) => {
       const match = await bcrypt.compare(req.body.password, user.password)
       if(match){
             const accessToken = generateAccessToken(user.toJSON())
-            console.log(user)
-
             const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_TOKEN)
             const token = new Token({token: refreshToken})
             await token.save()
@@ -68,12 +66,4 @@ exports.token = asyncHandler(async (req,res,next) => {
         console.log(err)
         res.sendStatus(401)
     }
-    // jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, user) => {
-    //     if(err){
-    //         console.log(err)
-    //         return res.sendStatus(403)
-    //     } 
-    //     const accessToken = generateAccessToken({username: user.username})
-    //     res.json({accessToken: accessToken})
-    // })
 })
