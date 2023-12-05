@@ -33,7 +33,7 @@ const SignUp = () => {
   return (
     <div>
         <Navbar/>
-        <h1>Create a post!</h1>
+        <h1>Create user!</h1>
             <form action="" method="POST" onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input 

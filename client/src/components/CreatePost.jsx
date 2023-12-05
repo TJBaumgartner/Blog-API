@@ -1,5 +1,5 @@
 import Navbar from './Navbar'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 const CreatePost = () => {
     const navigate = useNavigate()
@@ -7,6 +7,25 @@ const CreatePost = () => {
     const [title, setTitle] = useState('')
     const [message, setMessage] = useState('')
     const [published, setPublished] = useState(false)
+
+
+    useEffect(() => {
+        fetch('http://localhost:5000/posts/create', {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+            }
+        })
+        .then((response) => {
+            if(response.status === 401){
+                navigate('/login');
+            }
+            return response.json()
+        })
+    }, [])
+
+
+
 
     const handlePost = () => {
         console.log('publish')
