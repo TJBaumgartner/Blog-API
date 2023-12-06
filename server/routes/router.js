@@ -29,6 +29,8 @@ router.post("/posts/:id/delete", posts.post_delete_post);
 router.post("/user/create", user.sign_up_post)
 
 router.post("/login", user.login)
+router.post("/logout", user.logout)
+
 router.post("/token", user.token)
 
 // router.get("/posts/:id/update", posts.post_update_get);

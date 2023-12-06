@@ -41,12 +41,24 @@ exports.login = asyncHandler(async (req, res, next) => {
             const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_TOKEN)
             const token = new Token({token: refreshToken})
             await token.save()
-            res.json({accessToken: accessToken, refreshToken: refreshToken})
+            res.json({accessToken: accessToken, refreshToken: refreshToken, admin: user.isBlogger, name: user.username})
+        } else {
+            return res.status(403).send('Incorrect Password')
         }
     } catch(err) {
       console.log(err)
         res.status(500).send('No user')
     }
+})
+exports.logout = asyncHandler(async (req,res,next) => {
+    const token = req.body.token
+    if(token == null) return res.sendStatus(404)
+    const clearToken = await Token.findOne({token: token})
+    if(!clearToken){
+        return res.sendStatus(403)
+    }
+    await Token.findOneAndDelete(req.body.token);
+    res.sendStatus(200)
 })
 exports.token = asyncHandler(async (req,res,next) => {
     const refreshToken = req.body.token

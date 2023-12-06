@@ -5,7 +5,7 @@ const asyncHandler = require("express-async-handler");
 
 
 exports.post_create_get = asyncHandler(async (req, res, next) => {
-    res.send('Posts Get')
+    res.sendStatus(200)
 });
 exports.post_create_post = [
     asyncHandler(async(req,res,next) => {

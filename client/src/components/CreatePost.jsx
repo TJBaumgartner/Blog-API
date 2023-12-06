@@ -12,8 +12,8 @@ const CreatePost = () => {
     useEffect(() => {
         fetch('http://localhost:5000/posts/create', {
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                'Content-Type': 'text/plain',
+                Authorization: 'Bearer ' + localStorage.getItem('access')
             }
         })
         .then((response) => {
@@ -22,6 +22,7 @@ const CreatePost = () => {
             }
             return response.json()
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
