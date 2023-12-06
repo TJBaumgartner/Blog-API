@@ -27,7 +27,7 @@ exports.sign_up_post = asyncHandler(async (req, res, next) => {
 
 
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.ACCESS_TOKEN, {expiresIn: '5min'})
+    return jwt.sign(user, process.env.ACCESS_TOKEN, {expiresIn: '5m'})
 }
 exports.login = asyncHandler(async (req, res, next) => {
     const user = await User.findOne({username: req.body.username})
@@ -39,6 +39,7 @@ exports.login = asyncHandler(async (req, res, next) => {
       if(match){
             const accessToken = generateAccessToken(user.toJSON())
             const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_TOKEN)
+            console.log(refreshToken)
             const token = new Token({token: refreshToken})
             await token.save()
             res.json({accessToken: accessToken, refreshToken: refreshToken, admin: user.isBlogger, name: user.username})

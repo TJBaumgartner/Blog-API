@@ -13,7 +13,7 @@ const Navbar = () => {
             body: JSON.stringify({"token": localStorage.getItem('refresh')})
         })
         .then((response) => {
-            localStorage.clear
+            localStorage.clear()
             navigate('/login')
             return response.json()
         })

@@ -10,19 +10,26 @@ import Login from './components/Login'
 function App() {
   
 
-  // const tokenRefresh =  async() => {
-  //     await fetch('http://localhost:5000/token', {
-  //         method: 'POST',
-  //         headers: {"Content-Type": "application/json"},
-  //         body: JSON.stringify({"token": refreshToken})
-  //     })
-  //     .then(res => res.json())
-  //     .then(data => console.log(data))
-  // }
+  useEffect(()=>{
+    setInterval(async () => {
+      await fetch('http://localhost:5000/token', {
+          method: 'POST',
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            "token": localStorage.getItem('refresh')
+          })
+      })
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        console.log(data)
+        localStorage.setItem('access', data.accessToken);
+      })
+    },29000)
+  }, [])
 
-  // useEffect(() => {
-  //   localStorage.setItem('refreshToken', JSON.stringify(refreshToken))
-  // }, [refreshToken])
+
 
   return(
     <div>
