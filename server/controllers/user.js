@@ -57,8 +57,8 @@ exports.logout = asyncHandler(async (req,res,next) => {
     if(!clearToken){
         return res.sendStatus(403)
     }
-    await Token.findOneAndDelete(req.body.token);
-    res.sendStatus(200)
+    await Token.findOneAndDelete({token: req.body.token});
+    return res.sendStatus(200)
 })
 exports.token = asyncHandler(async (req,res,next) => {
     const refreshToken = req.body.token

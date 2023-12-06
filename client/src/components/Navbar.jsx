@@ -2,12 +2,21 @@
 
 import { Link } from "react-router-dom";
 import {useState, useEffect} from 'react'
-
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-
-    const clear = () => {
-        localStorage.clear()
+    const navigate = useNavigate()
+    const logout = async() => {
+        await fetch('http://localhost:5000/logout', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"token": localStorage.getItem('refresh')})
+        })
+        .then((response) => {
+            localStorage.clear
+            navigate('/login')
+            return response.json()
+        })
     }
     const [loggedIn, setLoggedIn] = useState(false)
     useEffect(() => {
@@ -38,7 +47,7 @@ const Navbar = () => {
                     </Link>
                 </div>
             }
-            <button onClick={clear}>clear</button>
+            <button onClick={logout}>Logout</button>
         </div>
   );
 };
