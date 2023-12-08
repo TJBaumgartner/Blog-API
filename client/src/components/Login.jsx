@@ -2,7 +2,7 @@
 import Navbar from './Navbar'
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 const Login = () => {
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
@@ -75,6 +75,7 @@ const Login = () => {
             Incorrect Password
             </h2>
             }
+            <h1>Don`t have an account? <Link to="/user/create">Sign Up!</Link></h1>
         </div>
   );
 };

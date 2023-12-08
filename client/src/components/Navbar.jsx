@@ -32,7 +32,10 @@ const Navbar = () => {
                 <div>
                     <Link to="/">
                         Home
-                    </Link>            
+                    </Link>       
+                    <Link to="/posts">
+                    View Posts
+                    </Link>     
                     {adminStatus === 'true' &&
                     <Link to="/posts/create">
                         Create Post
@@ -47,6 +50,9 @@ const Navbar = () => {
                     </Link>
                     <Link to="/user/create">
                         Create User
+                    </Link>
+                    <Link to="/posts">
+                        View Posts
                     </Link>
                 </div>
             }
