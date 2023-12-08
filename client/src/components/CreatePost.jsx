@@ -40,7 +40,6 @@ const CreatePost = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const post = {title, message, published}
-
         fetch('http://localhost:5000/posts/create', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -49,7 +48,7 @@ const CreatePost = () => {
         .then(() => {
             console.log('new blog added')
         })
-        navigate('/')
+        navigate('/posts')
     }
   return (
     <div>
@@ -80,7 +79,7 @@ const CreatePost = () => {
                 <input type="radio" id="archive" name="archived" value="Archive" onClick={handleArchive}/>
                 <label htmlFor="archive">Archive</label>
                 </div>
-                <button type="submit" onClick={handlePost}>Post!</button>
+                <button type="submit">Post!</button>
             </form>    
     </div>
   );

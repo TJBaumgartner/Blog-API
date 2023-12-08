@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const navigate = useNavigate()
+    const adminStatus = localStorage.getItem('admin')
     const logout = async() => {
         await fetch('http://localhost:5000/logout', {
             method: 'POST',
@@ -31,10 +32,12 @@ const Navbar = () => {
                 <div>
                     <Link to="/">
                         Home
-                    </Link>
+                    </Link>            
+                    {adminStatus === 'true' &&
                     <Link to="/posts/create">
                         Create Post
                     </Link>
+                    }
                 </div>
             }
             {loggedIn === false &&

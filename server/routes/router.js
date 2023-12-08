@@ -18,7 +18,7 @@ router.get("/comments/:id/delete", comments.comment_delete_get);
 router.post("/comments/:id/delete", comments.comment_delete_post);
 
 
-router.get("/posts", authenticate, posts.post_list);
+router.get("/posts", posts.post_list);
 
 router.get("/posts/create", authenticate, posts.post_create_get);
 router.post("/posts/create", posts.post_create_post);

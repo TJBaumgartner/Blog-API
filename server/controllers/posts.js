@@ -19,8 +19,10 @@ exports.post_create_post = [
     })
 ];
 exports.post_list = asyncHandler(async (req, res, next) => {
-    res.send(req.user)
-
+    const allPosts = await Post.find({isPublished: true})
+    .sort({title: 1})
+    .exec();
+    res.json(allPosts)
 });
 
 exports.post_delete_get = asyncHandler(async (req, res, next) => {
