@@ -5,7 +5,7 @@ const asyncHandler = require("express-async-handler");
 
 
 exports.post_create_get = asyncHandler(async (req, res, next) => {
-    res.sendStatus(200)
+    res.status(200).send('Post get')
 });
 exports.post_create_post = [
     asyncHandler(async(req,res,next) => {
@@ -19,6 +19,7 @@ exports.post_create_post = [
     })
 ];
 exports.post_list = asyncHandler(async (req, res, next) => {
+    console.log('hi')
     const allPosts = await Post.find()
     .sort({title: 1})
     .exec();

@@ -20,6 +20,7 @@ const Navbar = () => {
         })
     }
     const [loggedIn, setLoggedIn] = useState(false)
+
     useEffect(() => {
         if(localStorage.length > 0){
             setLoggedIn(true)
@@ -37,9 +38,14 @@ const Navbar = () => {
                     View Posts
                     </Link>     
                     {adminStatus === 'true' &&
+                    <div>
                     <Link to="/posts/create">
                         Create Post
                     </Link>
+                    <Link to="/blogger/posts">
+                        View Posts
+                    </Link>
+                    </div>
                     }
                 </div>
             }
