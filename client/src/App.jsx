@@ -12,7 +12,7 @@ function App() {
 
   useEffect(()=>{
     setInterval(async () => {
-      await fetch('http://localhost:5000/token', {
+      await fetch('http://localhost:5000/api/token', {
           method: 'POST',
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({

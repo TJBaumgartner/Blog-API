@@ -26,7 +26,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api', router)
+app.use('/blogger', router)
 
 app.use(function(req, res, next) {
   next(createError(404));
@@ -40,7 +40,7 @@ app.use(function(err, req, res, next) {
   res.send('error');
 });
 
-app.listen(5000, () => console.log('Server is Listening on Port 5000'))
+app.listen(8080, () => console.log('Server is Listening on Port 6000'))
 
 module.exports = app;
 

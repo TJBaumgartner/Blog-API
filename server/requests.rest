@@ -1,6 +1,10 @@
 
-GET http://localhost:5000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibmV3dGVzdCIsImlhdCI6MTcwMTY0OTEwOSwiZXhwIjoxNzAxNjQ5MTI5fQ.VRw0RbWgDpxAvkCYhKROZRYJBrIk-mldlp2CgCXxnMg
+GET http://localhost:5000/user/create
+
+{
+    "username": "newtest",
+    "password": "1"
+}
 ### 
 
 POST http://localhost:5000/login

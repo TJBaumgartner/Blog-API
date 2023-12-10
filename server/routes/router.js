@@ -5,7 +5,6 @@ const posts = require('../controllers/posts');
 const comments = require('../controllers/comments');
 const user = require('../controllers/user');
 const authenticate = require('../controllers/authenticate')
-/* GET users listing. */
 
 router.get("/", comments.index);
 
@@ -33,7 +32,5 @@ router.post("/logout", user.logout)
 
 router.post("/token", user.token)
 
-// router.get("/posts/:id/update", posts.post_update_get);
-// router.post("/posts/:id/update", posts.post_update_post);
 
 module.exports = router;

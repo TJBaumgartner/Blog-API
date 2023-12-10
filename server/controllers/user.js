@@ -11,18 +11,18 @@ exports.sign_up_get = asyncHandler(async (req, res, next) => {
 
 
 exports.sign_up_post = asyncHandler(async (req, res, next) => {
-    try{
-        const hash = await bcrypt.hash(req.body.password, 10);
-    
-        const user = new User({
-            username: req.body.username,
-            password: hash,
-            isBlogger: false
-        });
-        await user.save()
-    } catch {
-        res.status(500).send()
+    const userExists = await User.findOne({username: req.body.username})
+    if(userExists){
+        return res.status(400).send('already a user')
     }
+    const hash = await bcrypt.hash(req.body.password, 10);
+    const user = new User({
+        username: req.body.username,
+        password: hash,
+        isBlogger: false
+    });
+    await user.save()
+    return res.status(200).send('ok')
 })
 
 

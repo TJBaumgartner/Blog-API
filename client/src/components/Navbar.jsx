@@ -8,7 +8,7 @@ const Navbar = () => {
     const navigate = useNavigate()
     const adminStatus = localStorage.getItem('admin')
     const logout = async() => {
-        await fetch('http://localhost:5000/logout', {
+        await fetch('http://localhost:5000/api/logout', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({"token": localStorage.getItem('refresh')})

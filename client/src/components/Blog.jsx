@@ -8,12 +8,12 @@ const Blog = () => {
     const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
+        fetch('http://localhost:5000/api/posts')
+        .then(response => response.json())
+        .then(data => setPosts(data))
         if(localStorage.length > 0) {
             setLoggedIn(true)
         }
-        fetch('http://localhost:5000/posts')
-        .then(response => response.json())
-        .then(data => setPosts(data))
     }, [])
     return (
         <div className="Homepage">

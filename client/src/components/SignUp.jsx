@@ -7,27 +7,34 @@ const SignUp = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [matchPassword, setMatchPassword] = useState(null)
+    const [userTaken, setUserTaken] = useState(false)
+    const [matchPassword, setMatchPassword] = useState(true)
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+
+        const user = {username, password}
         if(password === confirmPassword){
-
-            const user = {username, password}
-
-            fetch('http://localhost:5000/user/create', {
+            console.log('password')
+            fetch('http://localhost:5000/api/user/create', {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(user)
             })
-            .then(() => {
-                console.log('new user added')
+            .then((response) => {
+                if(response.status === 400){
+                    setPassword('')
+                    return setUserTaken(true)
+                }
+                response.json()
+                return navigate('/')
             })
-            navigate('/')
+            .then((data) => {
+                console.log(data)
+            })
         } else {
             setMatchPassword(false)
-            return;
         }
     }
   return (
@@ -67,8 +74,29 @@ const SignUp = () => {
             {matchPassword === false &&
                 <h2>Passwords must match</h2>
             }    
+            {userTaken === true &&
+                <h2>Username is taken</h2>
+            }  
       </div>
   );
 };
 
 export default SignUp;
+
+
+
+
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!
+// trying to make create user not duplicate usernames!!

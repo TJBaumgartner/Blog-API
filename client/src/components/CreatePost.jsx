@@ -10,7 +10,7 @@ const CreatePost = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/posts/create', {
+        fetch('http://localhost:5000/api/posts/create', {
             headers: {
                 'Content-Type': 'text/plain',
                 Authorization: 'Bearer ' + localStorage.getItem('access')
@@ -40,7 +40,7 @@ const CreatePost = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const post = {title, message, published}
-        fetch('http://localhost:5000/posts/create', {
+        fetch('http://localhost:5000/api/posts/create', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
