@@ -7,7 +7,7 @@ import ErrorPage from './components/ErrorPage'
 import CreatePost from './components/CreatePost'
 import Signup from './components/SignUp'
 import Login from './components/Login'
-import AllPosts from './components/Posts'
+import AllPosts from './components/AllPosts'
 function App() {
   
 

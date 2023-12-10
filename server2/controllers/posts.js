@@ -26,6 +26,19 @@ exports.post_list = asyncHandler(async (req, res, next) => {
     res.json(allPosts)
 });
 
+exports.post_publish = asyncHandler(async (req, res, next) => {
+    // console.log(req.body)
+    const updatedPost = new Post({
+        title: req.body.title,
+        post: req.body.post,
+        isPublished: true,
+        poster: req.body.poster,
+        _id: req.body._id
+    });
+    await Post.findByIdAndUpdate(req.body._id, updatedPost);
+    res.sendStatus(200)
+});
+
 exports.post_delete_get = asyncHandler(async (req, res, next) => {
     res.send('Posts Delete Get')
 
