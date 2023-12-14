@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Navbar from './Navbar'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 const Login = () => {
@@ -9,6 +9,17 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [usernameError, setUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+
+
+
+    useEffect(() => {
+        if(localStorage.length > 0) {
+            navigate('/')
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+
 
     const login = (e) => {
         e.preventDefault();

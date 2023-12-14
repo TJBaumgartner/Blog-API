@@ -9,8 +9,7 @@ const UserSchema = new Schema({
         type: Boolean, 
         default: false
     }
-    }
-);
+});
 
 // UserSchema.virtual("url").get(function () {
 //     return `/users/${this.id}`;

@@ -19,7 +19,6 @@ exports.post_create_post = [
     })
 ];
 exports.post_list = asyncHandler(async (req, res, next) => {
-    console.log('hi')
     const allPosts = await Post.find()
     .sort({title: 1})
     .exec();
@@ -32,6 +31,18 @@ exports.post_publish = asyncHandler(async (req, res, next) => {
         title: req.body.title,
         post: req.body.post,
         isPublished: true,
+        poster: req.body.poster,
+        _id: req.body._id
+    });
+    await Post.findByIdAndUpdate(req.body._id, updatedPost);
+    res.sendStatus(200)
+});
+exports.post_archive = asyncHandler(async (req, res, next) => {
+    // console.log(req.body)
+    const updatedPost = new Post({
+        title: req.body.title,
+        post: req.body.post,
+        isPublished: false,
         poster: req.body.poster,
         _id: req.body._id
     });

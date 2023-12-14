@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom';
-
+import BlogCard from './BlogCard';
 const Blog = () => {
     const [posts, setPosts] = useState(null)
     const [loggedIn, setLoggedIn] = useState(false);
@@ -24,7 +24,12 @@ const Blog = () => {
         }
         {posts ?(
             posts.map((post) => (
-                post.isPublished == true ? <div key={post._id}><h1>{post.title}</h1><p>{post.post}</p></div> : null
+                post.isPublished == true ? 
+                <BlogCard
+                    key={post._id}
+                    post={post}
+                /> :
+                null
            ))
            ) : (
                <p>There are no posts</p>

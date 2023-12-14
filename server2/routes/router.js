@@ -5,8 +5,9 @@ const posts = require('../controllers/posts');
 const comments = require('../controllers/comments');
 const authenticate = require('../controllers/authenticate')
 
-router.get("/posts", posts.post_list);
+router.get("/posts", authenticate, posts.post_list);
 router.post("/posts/publish", posts.post_publish);
+router.post("/posts/archive", posts.post_publish);
 
 router.get("/posts/create", posts.post_create_get);
 router.post("/posts/create", posts.post_create_post);

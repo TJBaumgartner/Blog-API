@@ -7,7 +7,9 @@ const PostSchehma = new Schema({
     post: {type: String, required: true},
     isPublished: {type: Boolean, default: false},
     poster: [{ type: Schema.Types.ObjectId, ref: "User" }],
-});
+},
+{timestamps: true}
+);
 
 PostSchehma.virtual("url").get(function () {
     return `/posts/${this.id}`;
