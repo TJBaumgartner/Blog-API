@@ -25,10 +25,15 @@ exports.post_list = asyncHandler(async (req, res, next) => {
     res.json(allPosts)
 });
 
-exports.post_delete_get = asyncHandler(async (req, res, next) => {
-    res.send('Posts Delete Get')
-
+exports.post_detail_get = asyncHandler(async (req, res, next) => {
+    const postDetail = await Post.findById(req.params.id).exec();
+    if(postDetail === null) {
+        const err = new Error("Post not found");
+        err.status = 404;
+        return next(err);
+    }
+    res.json(postDetail)
 });
-exports.post_delete_post = asyncHandler(async (req, res, next) => {
+exports.post_detail_post = asyncHandler(async (req, res, next) => {
     res.send('Posts Delete Post')
 });

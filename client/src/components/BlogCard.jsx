@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import {useEffect, useState} from 'react'
+import { Link } from "react-router-dom";
 const BlogCard = (props) => {
 
     const post = props.post;
@@ -50,6 +51,10 @@ const BlogCard = (props) => {
          <div className="postCard">
             <h2>{post.title}</h2>
             <p>{post.post}</p>
+            <Link to={{
+               pathname: `/posts/${post._id}`,
+            }}
+             >Detail</Link>
             {(loggedIn === true && showForm === false)  &&
             <button className="" onClick={() => ShowForm()}>Comment</button>
             }

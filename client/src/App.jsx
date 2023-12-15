@@ -8,6 +8,7 @@ import CreatePost from './components/CreatePost'
 import Signup from './components/SignUp'
 import Login from './components/Login'
 import AllPosts from './components/AllPosts'
+import PostDetail from './components/PostDetail'
 function App() {
   
 
@@ -41,8 +42,8 @@ function App() {
         />}/>
         <Route path="/user/create" element={<Signup/>}/>
         <Route path="/posts/create" element={<CreatePost/>}/>
+        <Route path="/posts/:id" element={<PostDetail/>}/>
         <Route path="/blogger/posts" element={<AllPosts/>}/>
-        {/* <Route path="/shop/:name/:item" element={<PurchaseItem/>}/> */}
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
     </div>
