@@ -55,30 +55,6 @@ const BlogCard = (props) => {
                pathname: `/posts/${post._id}`,
             }}
              >Detail</Link>
-            {(loggedIn === true && showForm === false)  &&
-            <button className="" onClick={() => ShowForm()}>Comment</button>
-            }
-            {showForm === true &&
-            <div>
-                <form action="" method="POST" onSubmit={handleSubmit}>
-                    <label htmlFor="message">Message:</label>
-                    <input 
-                    name="message" 
-                    id="message" 
-                    type="text"
-                    required
-                    value={commentMessage}
-                    onChange={(e) => setCommentMessage(e.target.value)}
-                    />            
-                    <button type="submit">Post Comment!</button>
-                </form>      
-                <h1 onClick={() => setShowForm(false)}>X</h1> 
-            </div>         
-            }
-            {comments &&
-            comments.map((comment) => (
-            <div key={comment._id}><h1>{comment.comment}</h1></div>
-            ))}
          </div>
     );
 };
