@@ -23,7 +23,7 @@ exports.comment_create_post = asyncHandler(async(req,res,next) => {
 
 
 exports.comment_list = asyncHandler(async (req, res, next) => {
-    const allComments = await Comment.find()
+    const allComments = await Comment.find({forPost: req.params.id})
     .sort({title: 1})
     .exec();
     res.json(allComments)

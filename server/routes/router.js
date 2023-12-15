@@ -25,8 +25,7 @@ router.post("/posts/create", posts.post_create_post);
 router.get("/posts/:id", posts.post_detail_get);
 router.post("/posts/:id", posts.post_detail_post);
 
-// router.get("/posts/:id/comments", comments.comment_delete_get);
-// router.post("/posts/:id/comments", comments.comment_delete_post);
+router.get("/posts/:id/comments", comments.comment_list);
 
 // router.get("/posts/:id/delete", posts.post_delete_get);
 // router.post("/posts/:id/delete", posts.post_delete_post);

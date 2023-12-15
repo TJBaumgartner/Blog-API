@@ -37,7 +37,7 @@ const PostDetail = () => {
     }
 
     const GetComments = () => {
-        fetch('http://localhost:5000/api/comments')
+        fetch(`http://localhost:5000/api/posts/${id}/comments`)
         .then(response => response.json())
         .then(data => setComments(data))
         if(localStorage.length > 0) {

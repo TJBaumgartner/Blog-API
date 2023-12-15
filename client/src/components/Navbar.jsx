@@ -43,7 +43,7 @@ const Navbar = () => {
                         Create Post
                     </Link>
                     <Link to="/blogger/posts">
-                        View Posts
+                        Blogger View
                     </Link>
                     </div>
                     }
