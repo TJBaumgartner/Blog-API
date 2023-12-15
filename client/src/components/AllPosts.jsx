@@ -7,6 +7,7 @@ const AllPosts = () => {
     const navigate = useNavigate()
     const [posts, setPosts] = useState(null)
     const [loggedIn, setLoggedIn] = useState(false);
+
     useEffect(() => {
         fetch('http://localhost:8080/blogger/posts', {        
             headers: {
@@ -28,45 +29,33 @@ const AllPosts = () => {
             setLoggedIn(true)
         }
             // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [posts])
 
-
-
-    const publishPost = (post) => {
-        fetch('http://localhost:8080/blogger/posts/publish', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(post)
-        })
-        .then((res) => {
-            console.log('new blog added')
-            res.json()
-        })
-    }
-    const archivePost = (post) => {
-        fetch('http://localhost:8080/blogger/posts/archive', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(post)
-        })
-        .then((res) => {
-            console.log('blog removed')
-            res.json()
-        })
-    }
     return (
         <div className="Homepage">
         <Navbar/>
-        <h1>Check out the Posts!</h1>
+        <h1>Post Manager</h1>
         {loggedIn == false &&
             <h1><Link to="/login">Login</Link> to comment!</h1>
         }
         {posts ?(
             posts.map((post) => (
                 post.isPublished == true ? 
-                <div key={post._id}><h1>{post.title}</h1><p>{post.post}</p><button onClick={() => archivePost(post)}>Archive</button></div>
+                <div key={post._id}>
+                <h1>{post.title}</h1><p>{post.post}</p>
+                <Link to={{
+                pathname: `/blogger/posts/${post._id}`,
+                }}
+                >Detail</Link>
+                </div>
                 : 
-                <div key={post._id}><h1>{post.title}</h1><p>{post.post}</p><button onClick={() => publishPost(post)}>Publish</button></div>
+                <div key={post._id}>
+                <h1>{post.title}</h1><p>{post.post}</p>
+                <Link to={{
+                pathname: `/blogger/posts/${post._id}`,
+                }}
+                >Detail</Link>
+                </div>
            ))
            ) : (
                <p>There are no posts</p>

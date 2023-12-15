@@ -51,9 +51,16 @@ exports.post_archive = asyncHandler(async (req, res, next) => {
 });
 
 exports.post_delete_get = asyncHandler(async (req, res, next) => {
-    res.send('Posts Delete Get')
-
+    res.send('post delete get')
 });
 exports.post_delete_post = asyncHandler(async (req, res, next) => {
-    res.send('Posts Delete Post')
+    console.log(req.params.id)
+    const postDetail = await Post.findById(req.params.id).exec();
+    if(postDetail === null) {
+        const err = new Error("Post not found");
+        err.status = 404;
+        return next(err);
+    }
+    await Post.findByIdAndDelete(req.params.id);
+    res.sendStatus(200)
 });
