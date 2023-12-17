@@ -42,7 +42,7 @@ exports.login = asyncHandler(async (req, res, next) => {
             console.log(refreshToken)
             const token = new Token({token: refreshToken})
             await token.save()
-            res.json({accessToken: accessToken, refreshToken: refreshToken, admin: user.isBlogger, name: user.username})
+            res.json({accessToken: accessToken, refreshToken: refreshToken, admin: user.isBlogger, name: user.username, userId: user.id})
         } else {
             return res.status(403).send('Incorrect Password')
         }

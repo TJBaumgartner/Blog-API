@@ -46,6 +46,7 @@ const Login = () => {
             localStorage.setItem('refresh', data.refreshToken);
             localStorage.setItem('admin', data.admin);
             localStorage.setItem('name', data.name)
+            localStorage.setItem('userID', data.userId)
             console.log(localStorage)
             navigate('/')
         })

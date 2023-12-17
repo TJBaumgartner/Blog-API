@@ -18,7 +18,8 @@ const PostDetail = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const forPost = post._id
-        const comment = {commentMessage, forPost}
+        const user = localStorage.getItem('userID')
+        const comment = {commentMessage, forPost, user}
         fetch('http://localhost:5000/api/comments/create', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -28,6 +29,7 @@ const PostDetail = () => {
             console.log('new comment added')
             setShowForm(false)
             GetComments()
+            setCommentMessage('')
             return response.json()
         })
     }
@@ -55,8 +57,8 @@ const PostDetail = () => {
     }, [comments])
 
 
-    const Log = () => {
-        console.log(post.title)
+    const Log = (comment) => {
+        console.log(comment)
     }
 
     return (
@@ -91,7 +93,12 @@ const PostDetail = () => {
             }
             {comments &&
             comments.map((comment) => (
-            <div key={comment._id}><p>{comment.comment}</p></div>
+            <div key={comment._id}>
+                {comment.poster.map((poster) => (
+                    <h5 key={poster._id}>Posted By: {poster.username}</h5>
+                ))}
+                <p>{comment.comment}</p>
+            </div>
             ))}
         {loggedIn == false &&
             <h1><Link to="/login">Login</Link> to comment!</h1>
