@@ -1,4 +1,4 @@
-const comments = require('../models/comments')
+const Comment = require('../models/comments')
 // const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
@@ -23,5 +23,13 @@ exports.comment_delete_get = asyncHandler(async (req, res, next) => {
 
 });
 exports.comment_delete_post = asyncHandler(async (req, res, next) => {
-    res.send('Comment Delete Post')
+    console.log(req.params.id)
+    const commentDetail = await Comment.findById(req.params.id).exec();
+    if(commentDetail === null) {
+        const err = new Error("Comment not found");
+        err.status = 404;
+        return next(err);
+    }
+    await Comment.findByIdAndDelete(req.params.id);
+    res.sendStatus(200)
 });

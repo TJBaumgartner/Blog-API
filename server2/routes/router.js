@@ -15,7 +15,6 @@ router.post("/posts/create", posts.post_create_post);
 router.get("/posts/:id/delete", posts.post_delete_get);
 router.post("/posts/:id/delete", posts.post_delete_post);
 
-// router.get("/posts/:id/update", posts.post_update_get);
-// router.post("/posts/:id/update", posts.post_update_post);
+router.post("/posts/:id/comments/:id/delete", comments.comment_delete_post)
 
 module.exports = router;

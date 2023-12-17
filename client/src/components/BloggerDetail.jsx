@@ -69,6 +69,19 @@ const PostDetail = () => {
         })
     }
 
+    const deleteComment = (commentID) => {
+        fetch(`http://localhost:8080/blogger/posts/${id}/comments/${commentID}/delete`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(post)
+        })
+        .then((res) => {
+            console.log('comment deleted')
+            res.json()
+            navigate('/blogger/posts')
+        })
+    }
+
     return (
         <div className="Homepage">
         <Navbar/>
@@ -109,7 +122,11 @@ const PostDetail = () => {
              */}
             {comments &&
                 comments.map((comment) => (
-                <div key={comment._id}><p>{comment.comment}</p></div>
+                <div key={comment._id}>
+                    <p>{comment.comment}</p>
+                    <button onClick={() => deleteComment(comment._id)}>Delete comment</button>
+                </div>
+                
             ))}
         {loggedIn == false &&
             <h1><Link to="/login">Login</Link> to comment!</h1>
